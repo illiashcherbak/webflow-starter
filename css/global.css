@@ -1,0 +1,464 @@
+/* ============================================================
+   WEBFLOW STARTER KIT — global.css
+   Version: 1.0.0
+   
+   This file is loaded via jsDelivr on every Webflow project.
+   Override colors/fonts per project in <head> <style> block.
+   ============================================================ */
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+  /* Colors — override per project */
+  --color-bg:           #ffffff;
+  --color-bg-alt:       #f5f5f5;
+  --color-text:         #1a1a1a;
+  --color-text-alt:     #6b6b6b;
+  --color-accent:       #2563eb;
+  --color-accent-hover: #1d4ed8;
+  --color-border:       #e5e5e5;
+
+  /* Spacing scale */
+  --space-xs:  0.5rem;
+  --space-s:   1rem;
+  --space-m:   1.5rem;
+  --space-l:   2.5rem;
+  --space-xl:  4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 8rem;
+
+  /* Section padding (fluid) */
+  --section-s:  clamp(3rem, 6vw, 5rem);
+  --section-m:  clamp(4rem, 8vw, 7rem);
+  --section-l:  clamp(5rem, 10vw, 9rem);
+
+  /* Typography scale (fluid) */
+  --text-xs:  clamp(0.75rem,  0.8vw + 0.4rem,  0.875rem);
+  --text-s:   clamp(0.875rem, 1vw + 0.5rem,     1rem);
+  --text-m:   clamp(1rem,     1.2vw + 0.5rem,   1.25rem);
+  --text-l:   clamp(1.25rem,  2vw + 0.5rem,     1.75rem);
+  --text-xl:  clamp(1.75rem,  3vw + 0.5rem,     2.75rem);
+  --text-2xl: clamp(2.25rem,  5vw + 0.5rem,     4rem);
+  --text-3xl: clamp(2.75rem,  6vw + 0.5rem,     5rem);
+
+  /* Font families — override per project */
+  --font-primary:   'Inter', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+
+  /* Transitions */
+  --ease-out:        cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:     cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast:   0.2s;
+  --duration-normal: 0.4s;
+  --duration-slow:   0.6s;
+
+  /* Border radius */
+  --radius-s:    0.25rem;
+  --radius-m:    0.5rem;
+  --radius-l:    1rem;
+  --radius-xl:   1.5rem;
+  --radius-full: 9999px;
+
+  /* Z-index scale */
+  --z-dropdown: 100;
+  --z-sticky:   200;
+  --z-overlay:  300;
+  --z-modal:    400;
+  --z-toast:    500;
+}
+
+
+/* ===== RESET (minimal, Webflow-friendly) ===== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Remove Webflow's scroll-behavior if Lenis is used */
+  scroll-behavior: auto;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* ===== CONTAINERS ===== 
+   
+   Usage in Webflow:
+   Create a div, give it class "container-m" (or s/l/full).
+   It auto-centers with side padding. That's it.
+   
+   container-s  → narrow content (768px)  — blog text, forms
+   container-m  → standard content (1088px) — most sections
+   container-l  → wide content (1280px)  — hero, header, grids
+   container-full → edge-to-edge with padding only
+*/
+
+.container-s {
+  max-width: 48rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.container-m {
+  max-width: 68rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.container-l {
+  max-width: 80rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.container-full {
+  width: 100%;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* Tighter side padding on small screens */
+@media (max-width: 479px) {
+  .container-s,
+  .container-m,
+  .container-l,
+  .container-full {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+
+/* ===== SECTION PADDING =====
+
+   Usage in Webflow:
+   Add "padding-section-m" as a COMBO class on your section.
+   Example: section has classes "section_hero" + "padding-section-l"
+   
+   s → compact sections (CTA, banners)
+   m → standard sections (about, features, FAQ)
+   l → spacious sections (hero, footer)
+*/
+
+.padding-section-s {
+  padding-top: var(--section-s);
+  padding-bottom: var(--section-s);
+}
+
+.padding-section-m {
+  padding-top: var(--section-m);
+  padding-bottom: var(--section-m);
+}
+
+.padding-section-l {
+  padding-top: var(--section-l);
+  padding-bottom: var(--section-l);
+}
+
+
+/* ===== GLOBAL UTILITIES =====
+
+   Only 4 utilities. Everything else — do in Webflow UI.
+*/
+
+.u-hide {
+  display: none !important;
+}
+
+.u-visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.u-text-center {
+  text-align: center;
+}
+
+.u-relative {
+  position: relative;
+}
+
+
+/* ===== COMPONENT: HEADER =====
+   Structural styles only. Visual styling done in Webflow.
+*/
+
+.section_header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: var(--z-sticky);
+  transition: background-color var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out);
+}
+
+/* Scrolled state — JS adds is-scrolled to section_header */
+.section_header.is-scrolled {
+  background-color: var(--color-bg);
+  box-shadow: 0 1px 0 var(--color-border);
+}
+
+/* ===== MOBILE NAV OVERLAY ===== */
+
+.header_nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: var(--color-bg);
+  z-index: var(--z-overlay);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--duration-normal) var(--ease-out),
+              visibility var(--duration-normal);
+}
+
+.header_nav-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+/* ===== BURGER ANIMATION =====
+   
+   3 lines → X animation via is-active class.
+   Line height, gap, colors — customize in Webflow.
+   The transforms are purely structural.
+*/
+
+.header_burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  gap: 0.375rem;
+  position: relative;
+  z-index: calc(var(--z-overlay) + 1);
+}
+
+.header_burger-line {
+  display: block;
+  width: 1.5rem;
+  height: 2px;
+  background-color: var(--color-text);
+  border-radius: 1px;
+  transition: transform var(--duration-normal) var(--ease-out),
+              opacity var(--duration-fast);
+  transform-origin: center;
+}
+
+/* Burger → X animation */
+.header_burger.is-active .header_burger-line:nth-child(1) {
+  transform: translateY(calc(2px + 0.375rem)) rotate(45deg);
+}
+
+.header_burger.is-active .header_burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.header_burger.is-active .header_burger-line:nth-child(3) {
+  transform: translateY(calc(-2px - 0.375rem)) rotate(-45deg);
+}
+
+/* Show burger on tablet and below */
+@media (max-width: 991px) {
+  .header_burger {
+    display: flex;
+  }
+  
+  /* Hide desktop nav, show overlay instead */
+  .header_nav {
+    display: none;
+  }
+}
+
+
+/* ===== COMPONENT: DROPDOWN =====
+   Desktop nav dropdown. Position & visibility only.
+*/
+
+.header_dropdown {
+  position: relative;
+}
+
+.header_dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 12rem;
+  padding-top: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.5rem);
+  transition: opacity var(--duration-fast) var(--ease-out),
+              visibility var(--duration-fast),
+              transform var(--duration-fast) var(--ease-out);
+  z-index: var(--z-dropdown);
+}
+
+.header_dropdown.is-open .header_dropdown-list {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+/* ===== COMPONENT: ACCORDION (FAQ) =====
+   Max-height animation. Content hidden by default.
+*/
+
+[data-accordion-content] {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--duration-normal) var(--ease-out);
+}
+
+/* Icon rotation when open */
+.faq_icon,
+[data-accordion-icon] {
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+[data-accordion].is-open .faq_icon,
+[data-accordion].is-open [data-accordion-icon] {
+  transform: rotate(45deg);
+}
+
+
+/* ===== COMPONENT: FORM =====
+   Base form reset. Visual styling in Webflow.
+*/
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Validation states — JS toggles these */
+.is-error {
+  outline: 2px solid #dc2626;
+  outline-offset: 2px;
+}
+
+.is-success {
+  outline: 2px solid #16a34a;
+  outline-offset: 2px;
+}
+
+
+/* ===== ANIMATIONS — INITIAL STATES =====
+   Elements start hidden. GSAP reveals them on scroll.
+   If GSAP fails to load, the fallback shows everything.
+*/
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+}
+
+[data-animate="fade-in"] {
+  transform: translateY(1.5rem);
+}
+
+[data-animate="stagger"] {
+  transform: translateY(1.5rem);
+}
+
+[data-animate="scale"] {
+  transform: scale(0.95);
+}
+
+/* Fallback: if JS doesn't run within 3s, show everything */
+@media (scripting: none) {
+  [data-animate] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  
+  .header_burger-line,
+  .header_dropdown-list,
+  .header_nav-overlay,
+  [data-accordion-content],
+  .faq_icon,
+  [data-accordion-icon] {
+    transition: none;
+  }
+}
