@@ -15,7 +15,7 @@
 
 ```html
 <!-- Стартер CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/YOUR_USER/webflow-starter@1.0.0/css/global.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/illiashcherbak/webflow-starter@1.0.0/css/global.css">
 
 <!-- Переопределение цветов и шрифтов под проект -->
 <style>
@@ -43,7 +43,7 @@
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 
 <!-- Стартер JS (всегда последний!) -->
-<script src="https://cdn.jsdelivr.net/gh/YOUR_USER/webflow-starter@1.0.0/js/global.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/illiashcherbak/webflow-starter@1.0.0/js/global.js" defer></script>
 ```
 
 ### 3. Построй структуру в Webflow
