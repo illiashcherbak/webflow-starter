@@ -499,6 +499,13 @@ function initSwiper() {
     const speed = parseInt(el.dataset.swiperSpeed, 10) || 500;
     const autoplayDelay = parseInt(el.dataset.swiperAutoplay, 10);
 
+    // Find the swiper container — either el itself has .swiper, or find it inside
+    const swiperContainer = el.classList.contains('swiper') ? el : el.querySelector('.swiper');
+    if (!swiperContainer) {
+      console.warn('[Starter] Swiper: no .swiper container found inside', el);
+      return;
+    }
+
     // Build config
     const config = {
       slidesPerView: mobileSlides,
@@ -520,9 +527,12 @@ function initSwiper() {
       },
     };
 
+    // Search for nav/pagination in parent wrapper (they may be outside .swiper)
+    const searchRoot = el.parentElement || el;
+
     // Navigation
-    const prevBtn = el.querySelector('[data-swiper-prev]');
-    const nextBtn = el.querySelector('[data-swiper-next]');
+    const prevBtn = searchRoot.querySelector('[data-swiper-prev]');
+    const nextBtn = searchRoot.querySelector('[data-swiper-next]');
     if (prevBtn && nextBtn) {
       config.navigation = {
         prevEl: prevBtn,
@@ -531,7 +541,7 @@ function initSwiper() {
     }
 
     // Pagination
-    const paginationEl = el.querySelector('[data-swiper-pagination]');
+    const paginationEl = searchRoot.querySelector('[data-swiper-pagination]');
     if (paginationEl) {
       config.pagination = {
         el: paginationEl,
@@ -550,7 +560,7 @@ function initSwiper() {
 
     // Initialize
     try {
-      new Swiper(el, config);
+      new Swiper(swiperContainer, config);
     } catch (e) {
       console.warn('[Starter] Swiper init failed:', e);
     }
