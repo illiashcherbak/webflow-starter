@@ -499,11 +499,19 @@ function initSwiper() {
     const speed = parseInt(el.dataset.swiperSpeed, 10) || 500;
     const autoplayDelay = parseInt(el.dataset.swiperAutoplay, 10);
 
-    // Find the swiper container — either el itself has .swiper, or find it inside
-    const swiperContainer = el.classList.contains('swiper') ? el : el.querySelector('.swiper');
-    if (!swiperContainer) {
-      console.warn('[Starter] Swiper: no .swiper container found inside', el);
-      return;
+    // Ensure Swiper can find its structure — add classes if Webflow stripped them
+    if (!el.classList.contains('swiper')) {
+      el.classList.add('swiper');
+    }
+    const wrapper = el.querySelector(':scope > div:not([data-swiper-prev]):not([data-swiper-next]):not([data-swiper-pagination])');
+    if (wrapper && !wrapper.classList.contains('swiper-wrapper')) {
+      wrapper.classList.add('swiper-wrapper');
+      // Add swiper-slide to each direct child of wrapper
+      Array.from(wrapper.children).forEach(child => {
+        if (!child.classList.contains('swiper-slide')) {
+          child.classList.add('swiper-slide');
+        }
+      });
     }
 
     // Build config
@@ -560,7 +568,7 @@ function initSwiper() {
 
     // Initialize
     try {
-      new Swiper(swiperContainer, config);
+      new Swiper(el, config);
     } catch (e) {
       console.warn('[Starter] Swiper init failed:', e);
     }
